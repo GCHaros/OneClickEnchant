@@ -1,0 +1,10 @@
+## Interface: 80200
+## Title: One Click Enchant
+## Notes: Create enchantment scrolls with just one single click.
+## Author: Manoréx on Outland-EU <H3adcracker#21987>
+
+## Version: 8.2.0.1
+## LoadOnDemand: 1
+## LoadWith: Blizzard_TradeSkillUI
+
+OneClickEnchant.lua
