@@ -1,5 +1,5 @@
 --[[
-	OneClickEnchantScroll v8.0.2.1 (r1)
+	OneClickEnchantScroll v8.0.2.1 (r3)
 	Copyright (c) 2019, All rights reserved.
 	
 	Maintained by:
@@ -600,7 +600,7 @@ end);
 f:SetMotionScriptsWhileDisabled(true);
 f:Hide();
 
-local function OCES_RefreshButtons(self)
+local function OCE_RefreshButtons(self)
 	if C_TradeSkillUI.IsTradeSkillGuild() or C_TradeSkillUI.IsNPCCrafting() or C_TradeSkillUI.IsTradeSkillLinked() then
 		f:Hide();
 	else
@@ -610,7 +610,7 @@ local function OCES_RefreshButtons(self)
             if enchantingTradeSkillNames[tradeSkillName] then
                 f.itemID = mapSpellToItem[recipeInfo.recipeID];
                 if (not f.itemID) then
-                    print(string.format("OCES: Missing scroll item for spellID %d. Please report this at Curse, WoWInterface or GitHub so it can be added in the next version.", recipeInfo.recipeID));
+                    print(string.format("OneClickEnchant: Missing scroll item for spellID %d. Please report this at Curse, WoWInterface or GitHub so it can be added in the next version.", recipeInfo.recipeID));
                 end;
                 f:Show();
                 local numCreateable = recipeInfo.numAvailable;
@@ -633,4 +633,4 @@ local function OCES_RefreshButtons(self)
     end
 end
 
-hooksecurefunc(TradeSkillFrame.DetailsFrame, "RefreshButtons", OCES_RefreshButtons);
+hooksecurefunc(TradeSkillFrame.DetailsFrame, "RefreshButtons", OCE_RefreshButtons);
