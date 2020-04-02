@@ -3,7 +3,7 @@
 ## Notes: Create enchantment scrolls with just one single click.
 ## Author: Manoréx on Outland-EU <H3adcracker#21987>
 
-## Version: 8.3.0.1
+## Version: 8.3.0.2
 ## LoadOnDemand: 1
 ## LoadWith: Blizzard_TradeSkillUI
 
