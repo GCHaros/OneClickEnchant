@@ -1,9 +1,9 @@
 --[[
-	OneClickEnchantScroll v8.0.2.1 (r3)
-	Copyright (c) 2019, All rights reserved.
+	OneClickEnchantScroll v9.2.0-release(r1)
+	Copyright (c) 2020, All rights reserved.
 	
 	Maintained by:
-		Manoréx on Outland-EU <H3adcracker#21987>
+		H3adcracker#21987
 		
 	This is a continuation of the old OCES from https://www.curseforge.com/wow/addons/oces that is no longer updated.
 		
@@ -23,6 +23,7 @@ local enchantingTradeSkillNames = {
     [GetSpellInfo(264471)] = true, -- Legion
     [GetSpellInfo(264473)] = true, -- Kul Tiran (BfA Alliance)
     [GetSpellInfo(265805)] = true, -- Zandalari (BfA Horde)
+    [GetSpellInfo(309832)] = true, -- Shadowlands
 }
 local loc = GetLocale();
 if loc == "deDE" then
@@ -566,6 +567,46 @@ local mapSpellToItem = {
 	[298438] = 168592, -- Weapon - Oceaning Restoration
 	[298437] = 168592,
 	[298515] = 168592,
+    --Shadowlands
+    --Boots
+    [323609] = 177661, -- Speed of Soul
+    [309534] = 172419, -- Eternal Agility
+    [309532] = 172413, -- Agile Soulwalker
+    --Bracers
+    [309608] = 172414, -- Illuminated Soul
+    [309609] = 172415, -- Eternal Intellect
+    [309610] = 172416, -- Shaded Hearthing
+    --Chest
+    [309535] = 172418,--Eternal Bulwark
+    [323761] = 177715,--Eternal Bounds
+    [323760] = 177659,--Eternal Skirmish
+    [324773] = 177962,--Eternal Stats
+    [323762] = 177716,--Sacred Stats
+    [342316] = 183738,--Eternal Insight
+    --Cloak
+    [309528] = 172410,--Fortified Speed
+    [309531] = 172412,--Fortified Leech
+    [323755] = 177660,--Soul Vitality
+    [309530] = 172411,--Fortified Avoidance
+    --Gloves
+    [309524] = 172406,--Shadowlands Gathering
+    [309526] = 172408,--Eternal Strength
+    [309525] = 172407,--Strength of Soul
+    --Ring
+    [309613] = 172358,--Bargain of Haste
+    [309614] = 172359,--Bargain of Mastery
+    [309612] = 172357,--Bargain of Critical Strike
+    [309615] = 172360,--Bargain of Versatility
+    [309616] = 172361,--Tenet of Critical Strike
+    [309617] = 172362,--Tenet of Haste
+    [309618] = 172363,--Tenet of Mastery
+    [309619] = 172364,--Tenet of Versatility
+    --Weapon
+    [309627] = 172366,--Celestial Guidance
+    [309623] = 172368,--Sinful Revelation
+    [309620] = 172370,--Lightless Force
+    [309621] = 172367,--Eternal Grace
+    [309622] = 172365,--Ascended Vigor
 }
 
 local f = CreateFrame("Button", "TradeSkillCreateScrollButton", TradeSkillFrame, "MagicButtonTemplate");
@@ -610,7 +651,7 @@ local function OCE_RefreshButtons(self)
             if enchantingTradeSkillNames[tradeSkillName] then
                 f.itemID = mapSpellToItem[recipeInfo.recipeID];
                 if (not f.itemID) then
-                    print(string.format("OneClickEnchant: Missing scroll item for spellID %d. Please report this at Curse, WoWInterface or GitHub so it can be added in the next version.", recipeInfo.recipeID));
+                    print(string.format("OneClickEnchant: Missing scroll item for spellID %d. Please report this at Curseforge.", recipeInfo.recipeID));
                 end;
                 f:Show();
                 local numCreateable = recipeInfo.numAvailable;

@@ -1,9 +1,9 @@
-## Interface: 80300
+## Interface: 90205
 ## Title: One Click Enchant
 ## Notes: Create enchantment scrolls with just one single click.
-## Author: Manoréx on Outland-EU <H3adcracker#21987>
+## Author: Tarley on Twisting Nether-EU <H3adcracker#21987>
 
-## Version: 8.3.0.2
+## Version: 9.2.5-release(r1)
 ## LoadOnDemand: 1
 ## LoadWith: Blizzard_TradeSkillUI
 
