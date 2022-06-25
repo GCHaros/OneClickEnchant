@@ -1,6 +1,6 @@
 --[[
-	OneClickEnchantScroll v9.2.0-release(r1)
-	Copyright (c) 2020, All rights reserved.
+	One Click Enchant
+	Copyright (c) 2020-2022, All rights reserved.
 	
 	Maintained by:
 		H3adcracker#21987
@@ -610,11 +610,19 @@ local mapSpellToItem = {
 }
 
 local f = CreateFrame("Button", "TradeSkillCreateScrollButton", TradeSkillFrame, "MagicButtonTemplate");
+local g = CreateFrame("Button", "TradeSkillCreateDisenchantButton", TradeSkillFrame, "MagicButtonTemplate,InsecureActionButtonTemplate");
 f:SetPoint("TOPRIGHT", TradeSkillFrame.DetailsFrame.CreateButton, "TOPLEFT");
+g:SetPoint("TOPRIGHT", "TradeSkillCreateScrollButton", "TOPLEFT", -1, 0);
+g:SetAttribute("type1", "macro");
+g:SetAttribute("macrotext1", "/cast Disenchant");
 if IsAddOnLoaded("ElvUI") and ElvUI then
 	ElvUI[1]:GetModule('Skins'):HandleButton(f);
+	ElvUI[1]:GetModule('Skins'):HandleButton(g);
 	f:ClearAllPoints();
+	g:ClearAllPoints();
 	f:SetPoint("TOPRIGHT", TradeSkillFrame.DetailsFrame.CreateButton, "TOPLEFT", -1, 0);
+	g:ClearAllPoints();
+	g:SetPoint("TOPRIGHT", "TradeSkillCreateScrollButton", "TOPLEFT", -1, 0);
 end
 f:SetScript("OnClick", function()
     if (IsShiftKeyDown() and f.itemID) then
@@ -640,10 +648,13 @@ end);
 
 f:SetMotionScriptsWhileDisabled(true);
 f:Hide();
+g:SetMotionScriptsWhileDisabled(true);
+g:Hide();
 
 local function OCE_RefreshButtons(self)
 	if C_TradeSkillUI.IsTradeSkillGuild() or C_TradeSkillUI.IsNPCCrafting() or C_TradeSkillUI.IsTradeSkillLinked() then
 		f:Hide();
+		g:Hide();
 	else
         local recipeInfo = self.selectedRecipeID and C_TradeSkillUI.GetRecipeInfo(self.selectedRecipeID);
         if recipeInfo and recipeInfo.alternateVerb then
@@ -654,9 +665,12 @@ local function OCE_RefreshButtons(self)
                     print(string.format("OneClickEnchant: Missing scroll item for spellID %d. Please report this at Curseforge.", recipeInfo.recipeID));
                 end;
                 f:Show();
+				g:Show();
                 local numCreateable = recipeInfo.numAvailable;
                 local numScrollsAvailable = GetItemCount(38682);
                 TradeSkillCreateScrollButton:SetText(string.format("%s (%d)", scrollText, numScrollsAvailable));
+				TradeSkillCreateDisenchantButton:SetText(string.format("Disenchant"));
+				TradeSkillCreateDisenchantButton:Enable();
                 if numScrollsAvailable == 0 then
                     numCreateable = 0;
                 end
@@ -667,11 +681,12 @@ local function OCE_RefreshButtons(self)
                 end
             else
                 f:Hide();
+				g:Hide();
             end
         else
             f:Hide();
+			g:Hide();
         end
     end
 end
-
 hooksecurefunc(TradeSkillFrame.DetailsFrame, "RefreshButtons", OCE_RefreshButtons);
