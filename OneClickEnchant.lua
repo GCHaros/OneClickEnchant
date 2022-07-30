@@ -636,6 +636,10 @@ f:SetScript("OnClick", function()
         UseItemByName(38682);
     end;
 end);
+--g:SetScript("OnClick", function()
+--	C_TradeSkillUI.CraftRecipe(TradeSkillFrame.DetailsFrame.selectedRecipeID);
+--	UseItemByName(38682);
+--end);
 f:SetScript("OnEnter", function()
     if f.itemID then
         GameTooltip:SetOwner(f);
